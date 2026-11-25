@@ -26,7 +26,7 @@ Personal portfolio and service showcase for **Fahad Saeed** — positioned for *
 - End-to-end Google Cloud Platform security implementation covering IAM least privilege, VPC firewall policies, CMEK key management, GKE cluster hardening, and centralized logging/monitoring.
 - **Tech Stack:** `Google Cloud Platform (GCP)` · `IAM` · `Cloud KMS` · `GKE` · `Cloud Monitoring` · `Cloud Security`
 
-### 3. [White-Label Web App Security Audit (Phase 1 Sample)](https://fahahd.github.io/reports/Passive_Recon_Portfolio_Report.pdf)
+### 3. [White-Label Web App Security Audit](https://fahahd.github.io/reports/Passive_Recon_Portfolio_Report.pdf)
 *Client Case Study — Sanitized Passive Recon & Attack-Surface Report (PDF)*
 - Sanitized real-world Passive Recon & Attack-Surface assessment uncovering expired-domain hijacking, a 7-hop malicious redirect chain, SSL/TLS gaps, and email security risks. Full Active Recon & OWASP Top 10 VAPT available upon written authorization.
 - **Scope & Controls:** `White-Label` · `Threat Intel` · `Attack Surface` · `Passive Recon` · `OWASP Top 10` · `SSL/TLS` · `SPF / DMARC`
