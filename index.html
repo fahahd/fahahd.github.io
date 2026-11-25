@@ -205,7 +205,7 @@
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: clamp(1.2rem, 2vw, 2.2rem);
       list-style: none;
       align-items: center;
     }
@@ -560,9 +560,12 @@
     }
     .about-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 4.5rem;
       align-items: center;
+    }
+    .about-text, .about-right {
+      min-width: 0;
     }
 
     .about-text p {
@@ -721,7 +724,7 @@
     }
     .whatido-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2.5rem;
       margin-top: 2rem;
     }
@@ -735,6 +738,7 @@
       position: relative;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       overflow: hidden;
+      min-width: 0;
     }
     .skill-card::before {
       content: '';
@@ -884,7 +888,7 @@
       max-width: 800px;
     }
 
-    /* PROJECTS SECTION (EXACTLY 2 REPOSITORIES) */
+    /* PROJECTS & CASE STUDIES SECTION */
     #projects {
       background: var(--bg2);
       max-width: 100%;
@@ -898,14 +902,14 @@
     }
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2.5rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
       margin-top: 2rem;
     }
 
     .project-card {
       border: 1px solid var(--border-cyan);
-      padding: 2.8rem;
+      padding: 2.2rem;
       background: var(--bg-card);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -915,6 +919,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      min-width: 0;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
     .project-card::before {
@@ -967,11 +972,13 @@
 
     .project-name {
       font-family: var(--sans);
-      font-size: 2.1rem;
+      font-size: 1.75rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.4rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+      overflow-wrap: break-word;
     }
     .project-cat {
       font-family: var(--mono);
@@ -1025,12 +1032,137 @@
       transform: translateX(5px);
     }
 
+    /* CERTIFICATIONS SECTION */
+    #certifications {
+      padding: 8rem 4rem;
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .cert-card {
+      border: 1px solid var(--border-cyan);
+      padding: 2.2rem;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 8px;
+      position: relative;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+    .cert-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 35px var(--glow);
+      transform: translateY(-5px);
+      background: var(--bg-card-hover);
+    }
+    .cert-card:hover::before {
+      opacity: 1;
+    }
+    .cert-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+      flex-wrap: wrap;
+    }
+    .cert-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--primary);
+      letter-spacing: 2.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .cert-date {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    .cert-title {
+      font-family: var(--sans);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.45rem;
+    }
+    .cert-provider {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 1.4rem;
+    }
+    .cert-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.6rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .cert-id {
+      color: var(--primary);
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid var(--border-cyan);
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+    .cert-footer {
+      margin-top: auto;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+    }
+
     /* CONTACT SECTION */
+    #contact {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      max-width: 100%;
+      padding: 8rem 4rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .contact-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
     .contact-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 5rem;
       align-items: start;
+    }
+    .contact-left, .contact-right {
+      min-width: 0;
     }
     .contact-left p {
       font-family: var(--sans);
@@ -1178,14 +1310,21 @@
     }
 
     /* RESPONSIVE BREAKPOINTS */
-    @media (max-width: 1024px) {
-      nav { padding: 1.2rem 2.5rem; }
-      section, #whatido, #projects { padding: 6rem 2.5rem; }
+    @media (max-width: 1120px) {
+      nav { padding: 1.1rem 2.5rem; }
+      .nav-email { display: none; }
+      section, #whatido, #projects, #certifications, #contact { padding: 6rem 2.5rem; }
       #hero { padding: 6rem 2.5rem 3rem; }
       .about-grid, .contact-grid { gap: 3rem; }
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .projects-grid .project-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       nav { padding: 1rem 1.8rem; }
       .nav-links {
         position: fixed;
@@ -1196,7 +1335,7 @@
         border-bottom: 1px solid var(--border-cyan);
         flex-direction: column;
         padding: 2rem;
-        gap: 1.5rem;
+        gap: 1.2rem;
         transform: translateY(-150%);
         transition: transform 0.35s ease;
         backdrop-filter: blur(20px);
@@ -1204,18 +1343,20 @@
       .nav-links.active {
         transform: translateY(0);
       }
-      .nav-email { display: none; }
       .nav-toggle { display: flex; }
 
-      section, #whatido, #projects { padding: 5rem 1.8rem; }
+      section, #whatido, #projects, #certifications, #contact { padding: 5rem 1.8rem; }
       #hero { padding: 6rem 1.8rem 3rem; }
       
-      .about-grid, .whatido-grid, .contact-grid, .projects-grid {
+      .about-grid, .whatido-grid, .contact-grid, .projects-grid, .certifications-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
+      }
+      .projects-grid .project-card:last-child:nth-child(odd) {
+        grid-column: auto;
       }
       .stat-box { padding: 1.2rem; }
-      .skill-card, .project-card { padding: 2rem; }
+      .skill-card, .project-card, .cert-card { padding: 2rem; }
       .contact-right { padding: 2rem; }
       footer {
         padding: 2rem 1.8rem;
@@ -1256,6 +1397,7 @@
     <li><a href="#whatido">skills</a></li>
     <li><a href="#career">career</a></li>
     <li><a href="#projects">projects</a></li>
+    <li><a href="#certifications">certifications</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
   <a href="mailto:fs8783788@gmail.com" class="nav-email">fs8783788@gmail.com</a>
@@ -1301,7 +1443,7 @@
 
 <!-- ABOUT SECTION -->
 <section id="about">
-  <div class="section-label">01 // IDENTITY & ARCHITECTURE</div>
+  <div class="section-label">IDENTITY &amp; ARCHITECTURE</div>
   <div class="about-grid">
     <div class="about-text fade-in">
       <h2 class="section-title">Who I <span>Am</span></h2>
@@ -1356,15 +1498,16 @@
   <span class="j-key">"specialization"</span><span class="j-punct">:</span> <span class="j-str">"Cloud Security & SOC Operations"</span><span class="j-punct">,</span>
   <span class="j-key">"university"</span><span class="j-punct">:</span> <span class="j-str">"SZABIST Karachi — BSCS '26"</span><span class="j-punct">,</span>
   <span class="j-key">"core_domains"</span><span class="j-punct">:</span> <span class="j-punct">[</span>
-    <span class="j-str">"SOC Operations & Threat Hunting"</span><span class="j-punct">,</span>
+    <span class="j-str">"White-Label Web App Audits (Passive Recon &amp; Active VAPT)"</span><span class="j-punct">,</span>
+    <span class="j-str">"SOC Operations &amp; Threat Hunting"</span><span class="j-punct">,</span>
     <span class="j-str">"Zero-Trust Cloud Infrastructure (GCP)"</span><span class="j-punct">,</span>
-    <span class="j-str">"Modular OSINT & VAPT Tooling"</span><span class="j-punct">,</span>
+    <span class="j-str">"Modular OSINT &amp; VAPT Tooling"</span><span class="j-punct">,</span>
     <span class="j-str">"Network Microsegmentation (eBPF)"</span>
   <span class="j-punct">]</span><span class="j-punct">,</span>
   <span class="j-key">"target_role"</span><span class="j-punct">:</span> <span class="j-str">"Cloud Security Engineer"</span><span class="j-punct">,</span>
   <span class="j-key">"location"</span><span class="j-punct">:</span> <span class="j-str">"Karachi, Pakistan"</span><span class="j-punct">,</span>
   <span class="j-key">"security_status"</span><span class="j-punct">:</span> <span class="j-bool">true</span><span class="j-punct">,</span>
-  <span class="j-key">"availability"</span><span class="j-punct">:</span> <span class="j-str">"Open to Global & Remote Opportunities"</span>
+  <span class="j-key">"availability"</span><span class="j-punct">:</span> <span class="j-str">"Open for Agency Audit Partnerships &amp; Global Remote Roles"</span>
 <span class="j-punct">}</span></code></pre>
         </div>
       </div>
@@ -1375,13 +1518,13 @@
 <!-- WHAT I DO SECTION -->
 <div id="whatido">
   <div class="whatido-inner">
-    <div class="section-label">02 // CAPABILITIES & DISCIPLINES</div>
+    <div class="section-label">CAPABILITIES &amp; DISCIPLINES</div>
     <h2 class="section-title fade-in">What I <span>Do</span></h2>
     <p class="section-sub fade-in">Implementing resilient defensive telemetry, incident automation, and hardened cloud boundaries.</p>
     
     <div class="whatido-grid">
       <div class="skill-card fade-in">
-        <div class="card-num">01 // DEFENSIVE OPERATIONS</div>
+        <div class="card-num">DEFENSIVE OPERATIONS</div>
         <h3 class="card-title">DEFEND</h3>
         <div class="card-sub">SOC TRIAGE, SIEM & THREAT DETECTION</div>
         <p class="card-desc">
@@ -1402,7 +1545,7 @@
       </div>
 
       <div class="skill-card fade-in">
-        <div class="card-num">02 // ARCHITECTURE & PERIMETER</div>
+        <div class="card-num">ARCHITECTURE &amp; PERIMETER</div>
         <h3 class="card-title">SECURE</h3>
         <div class="card-sub">CLOUD DEFENSE & HARDENED INFRASTRUCTURE</div>
         <p class="card-desc">
@@ -1427,7 +1570,7 @@
 
 <!-- CAREER SECTION -->
 <section id="career">
-  <div class="section-label">03 // PROFESSIONAL TIMELINE</div>
+  <div class="section-label">PROFESSIONAL TIMELINE</div>
   <h2 class="section-title fade-in">My <span>Career</span></h2>
   <p class="section-sub fade-in">Proven hands-on experience spanning enterprise administration, technical instruction, and active security research.</p>
   
@@ -1461,24 +1604,24 @@
   </div>
 </section>
 
-<!-- PROJECTS SECTION (STRICTLY 2 PROJECTS) -->
+<!-- PROJECTS & CASE STUDIES SECTION -->
 <div id="projects">
   <div class="projects-inner">
-    <div class="section-label">04 // PRODUCTION ARTIFACTS</div>
-    <h2 class="section-title fade-in">Featured <span>Repositories</span></h2>
-    <p class="section-sub fade-in">Curated open-source security engineering projects demonstrating full-stack offensive recon and cloud defense.</p>
+    <div class="section-label">PRODUCTION ARTIFACTS</div>
+    <h2 class="section-title fade-in">Featured <span>Repositories &amp; Audits</span></h2>
+    <p class="section-sub fade-in">Curated open-source security engineering projects and sanitized B2B audit deliverables demonstrating full-stack offensive recon and cloud defense.</p>
     
     <div class="projects-grid">
       <!-- Project 1: CyGILUS -->
       <div class="project-card fade-in">
         <div class="project-header">
-          <div class="project-num">01 // FEATURED FYP</div>
+          <div class="project-num">FEATURED FYP</div>
           <a href="https://github.com/fahahd/CyGILUS" target="_blank" rel="noopener noreferrer" class="project-ext-icon" aria-label="Visit CyGILUS repository on GitHub">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
         </div>
         <h3 class="project-name">CyGILUS</h3>
-        <div class="project-cat">MODULAR PYTHON-BASED OSINT & VAPT FRAMEWORK</div>
+        <div class="project-cat">MODULAR PYTHON-BASED OSINT &amp; VAPT FRAMEWORK</div>
         <p class="project-desc">
           Automated intelligence gathering and vulnerability assessment suite featuring domain/subdomain discovery, email scraping, CPE-based CVE detection, exposed endpoint checking, and heuristic analysis.
         </p>
@@ -1501,13 +1644,13 @@
       <!-- Project 2: gcp-security-capstone -->
       <div class="project-card fade-in">
         <div class="project-header">
-          <div class="project-num">02 // CLOUD DEFENSE</div>
+          <div class="project-num">CLOUD DEFENSE</div>
           <a href="https://github.com/fahahd/gcp-security-capstone" target="_blank" rel="noopener noreferrer" class="project-ext-icon" aria-label="Visit gcp-security-capstone repository on GitHub">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
         </div>
         <h3 class="project-name">gcp-security-capstone</h3>
-        <div class="project-cat">CLOUD SECURITY ARCHITECTURE & INFRASTRUCTURE HARDENING</div>
+        <div class="project-cat">CLOUD SECURITY ARCHITECTURE &amp; INFRASTRUCTURE HARDENING</div>
         <p class="project-desc">
           End-to-end Google Cloud Platform security implementation covering IAM least privilege, VPC firewall policies, CMEK key management, GKE cluster hardening, and centralized logging/monitoring.
         </p>
@@ -1526,65 +1669,198 @@
           </a>
         </div>
       </div>
+
+      <!-- Project 3: White-Label Web App Security Audit -->
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <div class="project-num">CLIENT CASE STUDY</div>
+          <a href="https://fahahd.github.io/reports/Passive_Recon_Portfolio_Report.pdf" target="_blank" rel="noopener noreferrer" class="project-ext-icon" aria-label="View White-Label Web App Security Audit Sample Report PDF">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </a>
+        </div>
+        <h3 class="project-name">White-Label Web App Security Audit (Phase 1 Sample)</h3>
+        <div class="project-cat">B2B AGENCY AUDIT DELIVERABLE &amp; ATTACK SURFACE</div>
+        <p class="project-desc">
+          Sanitized real-world Passive Recon &amp; Attack-Surface assessment uncovering expired-domain hijacking, a 7-hop malicious redirect chain, SSL/TLS gaps, and email security risks. Full Active Recon &amp; OWASP Top 10 VAPT available upon written authorization.
+        </p>
+        <div class="tags" style="margin-bottom: 2rem;">
+          <span class="tag">White-Label</span>
+          <span class="tag">Threat Intel</span>
+          <span class="tag">Attack Surface</span>
+          <span class="tag">Passive Recon</span>
+          <span class="tag">OWASP Top 10</span>
+          <span class="tag">SSL/TLS</span>
+          <span class="tag">SPF / DMARC</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://fahahd.github.io/reports/Passive_Recon_Portfolio_Report.pdf" target="_blank" rel="noopener noreferrer" class="project-link">
+            <span>VIEW SAMPLE REPORT (PDF)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT SECTION -->
-<section id="contact">
-  <div class="section-label">05 // SECURE TRANSMISSION</div>
-  <div class="contact-grid">
-    <div class="contact-left fade-in">
-      <h2 class="section-title">Let's <span>Connect</span></h2>
-      <p>
-        Available for cloud security engineering positions, SOC analyst roles, and high-impact security research collaborations. Reach out directly through encrypted channels or professional links below.
-      </p>
-      
-      <div class="contact-links">
-        <a href="mailto:fs8783788@gmail.com" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <span>fs8783788@gmail.com</span>
-        </a>
-        <a href="https://github.com/fahahd" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          <span>github.com/fahahd</span>
-        </a>
-        <a href="https://linkedin.com/in/fahad--" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          <span>linkedin.com/in/fahad--</span>
-        </a>
-        <a href="https://tryhackme.com/p/fs8783788" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          <span>tryhackme.com/p/fs8783788</span>
-        </a>
-        <a href="tel:+923283578132" class="contact-link">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          <span>+92 328 3578132</span>
+<!-- CERTIFICATIONS SECTION -->
+<section id="certifications">
+  <div class="section-label">VERIFIED CREDENTIALS</div>
+  <h2 class="section-title fade-in">Industry <span>Certifications</span></h2>
+  <p class="section-sub fade-in">Cryptographically verifiable cloud security, networking, and SOC operations credentials.</p>
+
+  <div class="certifications-grid">
+    <!-- Cert 1 -->
+    <div class="cert-card fade-in">
+      <div class="cert-badge-row">
+        <span class="cert-eyebrow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          CLOUD SECURITY
+        </span>
+        <span class="cert-date">Issued: November 2026</span>
+      </div>
+      <h3 class="cert-title">Google Cloud Certification: Cloud Security Engineer</h3>
+      <div class="cert-provider">Google Cloud (Coursera)</div>
+      <div class="cert-meta">
+        <span>CREDENTIAL ID:</span>
+        <code class="cert-id">95LL5CC1D6RA</code>
+      </div>
+      <div class="cert-footer">
+        <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/95LL5CC1D6RA" target="_blank" rel="noopener noreferrer" class="project-link">
+          <span>VERIFY CREDENTIAL</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
     </div>
 
-    <div class="contact-right fade-in">
-      <h3>Operational Telemetry</h3>
-      <div class="contact-item">
-        <label>BASE LOCATION</label>
-        <p>Karachi, Pakistan (PKT / UTC+5)</p>
+    <!-- Cert 2 -->
+    <div class="cert-card fade-in">
+      <div class="cert-badge-row">
+        <span class="cert-eyebrow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          NETWORK INFRASTRUCTURE
+        </span>
+        <span class="cert-date">Issued: August 2026</span>
       </div>
-      <div class="contact-item">
-        <label>AFFILIATION</label>
-        <p>SZABIST University — BSCS '26</p>
+      <h3 class="cert-title">Cisco CCNA 200-301</h3>
+      <div class="cert-provider">Packt (Coursera)</div>
+      <div class="cert-meta">
+        <span>CREDENTIAL ID:</span>
+        <code class="cert-id">QPQ0OPDFA481</code>
       </div>
-      <div class="contact-item">
-        <label>DEPLOYMENT AVAILABILITY</label>
-        <p>Open for Remote, Global & On-Site Roles</p>
+      <div class="cert-footer">
+        <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/QPQ0OPDFA481" target="_blank" rel="noopener noreferrer" class="project-link">
+          <span>VERIFY CREDENTIAL</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
       </div>
-      <div class="contact-item">
-        <label>PRIMARY OBJECTIVE</label>
-        <p>Cloud Security Engineering & DevSecOps</p>
+    </div>
+
+    <!-- Cert 3 -->
+    <div class="cert-card fade-in">
+      <div class="cert-badge-row">
+        <span class="cert-eyebrow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          CYBERSECURITY CORE
+        </span>
+        <span class="cert-date">Issued: August 2026</span>
       </div>
-      <div class="contact-item">
-        <label>DIRECT TRANSMISSION</label>
-        <a href="mailto:fs8783788@gmail.com">fs8783788@gmail.com</a>
+      <h3 class="cert-title">Google Cybersecurity Professional Certificate (v.2)</h3>
+      <div class="cert-provider">Google (Coursera / Credly)</div>
+      <div class="cert-meta">
+        <span>CREDENTIAL ID:</span>
+        <code class="cert-id">8GT84LLYBVO8</code>
+      </div>
+      <div class="cert-footer">
+        <a href="https://www.credly.com/badges/c551b46b-14b5-49a8-827d-600df3832896" target="_blank" rel="noopener noreferrer" class="project-link">
+          <span>VERIFY CREDENTIAL</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cert 4 -->
+    <div class="cert-card fade-in">
+      <div class="cert-badge-row">
+        <span class="cert-eyebrow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          SECOPS &amp; TRIAGE
+        </span>
+        <span class="cert-date">Issued: July 2026</span>
+      </div>
+      <h3 class="cert-title">Security Operations Center (SOC)</h3>
+      <div class="cert-provider">Cisco Learning and Certifications (Coursera)</div>
+      <div class="cert-meta">
+        <span>CREDENTIAL ID:</span>
+        <code class="cert-id">C2B95KQKHDZQ</code>
+      </div>
+      <div class="cert-footer">
+        <a href="https://www.coursera.org/account/accomplishments/certificate/C2B95KQKHDZQ" target="_blank" rel="noopener noreferrer" class="project-link">
+          <span>VERIFY CREDENTIAL</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label">SECURE TRANSMISSION</div>
+    <div class="contact-grid">
+      <div class="contact-left fade-in">
+        <h2 class="section-title">Let's <span>Connect</span></h2>
+        <p>
+          Partnering with software agencies for white-label web application security audits (48h attack-surface assessments &amp; authorized OWASP VAPT), while open to Cloud Security, SOC, and IT/Network Operations roles. Reach out directly via the channels below.
+        </p>
+        
+        <div class="contact-links">
+          <a href="mailto:fs8783788@gmail.com" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>fs8783788@gmail.com</span>
+          </a>
+          <a href="https://github.com/fahahd" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            <span>github.com/fahahd</span>
+          </a>
+          <a href="https://www.linkedin.com/in/fahad--/" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            <span>linkedin.com/in/fahad--</span>
+          </a>
+          <a href="https://tryhackme.com/p/fs8783788" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>tryhackme.com/p/fs8783788</span>
+          </a>
+          <a href="tel:+923283578132" class="contact-link">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+92 328 3578132</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right fade-in">
+        <h3>Operational Telemetry</h3>
+        <div class="contact-item">
+          <label>BASE LOCATION</label>
+          <p>Karachi, Pakistan (PKT / UTC+5)</p>
+        </div>
+        <div class="contact-item">
+          <label>AFFILIATION</label>
+          <p>SZABIST University — BSCS '26</p>
+        </div>
+        <div class="contact-item">
+          <label>DEPLOYMENT AVAILABILITY</label>
+          <p>Agency Audit Partnerships &amp; Global Remote / On-Site Roles</p>
+        </div>
+        <div class="contact-item">
+          <label>PRIMARY OBJECTIVE</label>
+          <p>Cloud Security Engineering &amp; DevSecOps</p>
+        </div>
+        <div class="contact-item">
+          <label>DIRECT TRANSMISSION</label>
+          <a href="mailto:fs8783788@gmail.com">fs8783788@gmail.com</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1776,7 +2052,7 @@
   }
   animateRing();
 
-  document.querySelectorAll('a, button, .project-card, .skill-card, .stat-box').forEach(el => {
+  document.querySelectorAll('a, button, .project-card, .cert-card, .skill-card, .stat-box').forEach(el => {
     el.addEventListener('mouseenter', () => {
       if (cursor && ring) {
         cursor.style.transform = 'scale(2.4)';
